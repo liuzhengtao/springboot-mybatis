@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.DbConfigMapper">
+    <resultMap id="dbConfMap" type="com.example.demo.entity.DbConfig" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="ip" property="ip" jdbcType="VARCHAR" />
+        <result column="mysqlport" property="mysqlPort" jdbcType="VARCHAR" />
+        <result column="username" property="userName" jdbcType="VARCHAR" />
+        <result column="passwd" property="passWd" jdbcType="VARCHAR" />
+        <result column="dbname" property="dbName" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <insert id="add" parameterType="com.example.demo.entity.DbConfig">
+        insert into dbconfig
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ip!=null">
+                ip,
+            </if>
+            <if test="mysqlPort!=null">
+                mysqlport,
+            </if>
+            <if test="userName!=null">
+                username,
+            </if>
+            <if test="passWd!=null">
+                passwd,
+            </if>
+            <if test="dbName!=null">
+                dbname,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="ip!=null">
+                #{ip},
+            </if>
+            <if test="mysqlPort!=null">
+                #{mysqlPort},
+            </if>
+            <if test="userName!=null">
+                #{userName},
+            </if>
+            <if test="passWd!=null">
+                #{passWd},
+            </if>
+            <if test="dbName!=null">
+                #{dbName},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.example.demo.entity.DbConfig">
+        update dbconfig
+        <set>
+            <if test="ip != null" >
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="mysqlPort != null" >
+                mysqlport = #{mysqlPort,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null" >
+            username = #{userName,jdbcType=VARCHAR},
+        </if>
+            <if test="passWd != null" >
+                passwd = #{passWd,jdbcType=VARCHAR},
+            </if>
+            <if test="dbName != null" >
+                dbname = #{dbName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE  id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        delete from user where id=#{id}
+    </delete>
+</mapper>
