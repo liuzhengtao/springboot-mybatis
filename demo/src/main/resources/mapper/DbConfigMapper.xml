@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.dao.DbConfigMapper">
-    <resultMap id="dbConfMap" type="com.example.demo.entity.DbConfig" >
+<mapper namespace="com.taotao3.www.dao.DbConfigMapper">
+    <resultMap id="dbConfMap" type="com.taotao3.www.entity.DbConfig" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="ip" property="ip" jdbcType="VARCHAR" />
         <result column="mysqlport" property="mysqlPort" jdbcType="VARCHAR" />
@@ -11,8 +11,8 @@
     </resultMap>
 
 
-    <insert id="add" parameterType="com.example.demo.entity.DbConfig">
-        insert into dbconfig
+    <insert id="add" parameterType="com.taotao3.www.entity.DbConfig">
+        insert  into dbconfig
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="ip!=null">
                 ip,
@@ -49,7 +49,7 @@
         </trim>
     </insert>
 
-    <update id="update" parameterType="com.example.demo.entity.DbConfig">
+    <update id="update" parameterType="com.taotao3.www.entity.DbConfig">
         update dbconfig
         <set>
             <if test="ip != null" >
